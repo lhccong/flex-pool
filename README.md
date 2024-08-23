@@ -1,6 +1,8 @@
 <h1 align="center">
-<img style="width: 25px" src="docs/imgs/icon.webp"/>
-<a href="https://github.com/lhccong/flex-pool" target="_blank">FlexPool</a></h1>
+<img style="width: 140px" src="docs/imgs/icon.webp"/>
+
+[//]: # (<a href="https://github.com/lhccong/flex-pool" target="_blank">FlexPool</a>)
+</h1>
 <p align="center">
   <a href="https://www.oracle.com/technetwork/java/javase/downloads/index.html" target="_blank"><img alt="JDK" src="https://img.shields.io/badge/JDK-1.8.0_162-orange.svg"/></a>
 </p>
