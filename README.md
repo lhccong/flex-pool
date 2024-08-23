@@ -1,5 +1,5 @@
 <h1 align="center">
-<img style="width: 140px" src="docs/imgs/icon.webp"/>
+<img style="width: 140px" src="docs/imgs/img.png"/>
 
 [//]: # (<a href="https://github.com/lhccong/flex-pool" target="_blank">FlexPool</a>)
 </h1>
