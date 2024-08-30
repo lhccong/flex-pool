@@ -11,6 +11,7 @@
     <modules>
         <module>flex-pool-spring-boot-starter</module>
         <module>flex-pool-test</module>
+        <module>flex-pool-admin</module>
     </modules>
 
     <properties>
