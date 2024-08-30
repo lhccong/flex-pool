@@ -33,11 +33,8 @@ public class RedisRegistry implements RegistryStrategy {
     @Override
     public void reportThreadPool(List<ThreadPoolConfigEntity> threadPoolEntities) {
         RList<ThreadPoolConfigEntity> list = redissonClient.getList(RegistryEnum.THREAD_POOL_CONFIG_LIST_KEY.getKey());
-        threadPoolEntities.forEach(item -> {
-            if (!list.contains(item)){
-                list.add(item);
-            }
-        });
+        list.clear();
+        list.addAll(threadPoolEntities);
     }
 
     /**
