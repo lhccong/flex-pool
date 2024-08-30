@@ -13,16 +13,15 @@ thread:
         policy: CallerRunsPolicy
 
 # 动态线程池管理配置
-dynamic:
-  thread:
-    pool:
-      config:
-        # 状态；true = 开启、false 关闭
-        enabled: true
-        # redis host
-        host: xxx
-        # redis port
-        port: 6379
+flex:
+  pool:
+    config:
+      # 状态；true = 开启、false 关闭
+      enable: true
+      # redis host
+      host: 127.0.0.1
+      # redis port
+      port: 6379
 
 # 日志
 logging:
