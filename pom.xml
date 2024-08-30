@@ -10,6 +10,7 @@
     <packaging>pom</packaging>
     <modules>
         <module>flex-pool-spring-boot-starter</module>
+        <module>flex-pool-test</module>
     </modules>
 
     <properties>
@@ -57,7 +58,7 @@
     </dependencyManagement>
 
     <build>
-        <finalName>dynamic-thread-pool</finalName>
+        <finalName>flex-pool</finalName>
         <resources>
             <resource>
                 <directory>src/main/resources</directory>

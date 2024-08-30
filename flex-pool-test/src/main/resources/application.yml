@@ -1,0 +1,5 @@
+spring:
+  application:
+    name: flex-pool-test-app
+  profiles:
+    active: dev
