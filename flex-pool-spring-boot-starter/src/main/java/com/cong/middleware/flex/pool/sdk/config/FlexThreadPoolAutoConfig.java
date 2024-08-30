@@ -2,11 +2,15 @@ package com.cong.middleware.flex.pool.sdk.config;
 
 import com.cong.middleware.flex.pool.sdk.domain.FlexThreadPoolService;
 import com.cong.middleware.flex.pool.sdk.domain.impl.FlexThreadPoolServiceImpl;
+import com.cong.middleware.flex.pool.sdk.domain.model.entity.ThreadPoolConfigEntity;
+import com.cong.middleware.flex.pool.sdk.domain.model.enums.RegistryEnum;
 import com.cong.middleware.flex.pool.sdk.registry.RegistryStrategy;
 import com.cong.middleware.flex.pool.sdk.registry.redis.RedisRegistry;
 import com.cong.middleware.flex.pool.sdk.trigger.job.ThreadPoolDataReportJob;
+import com.cong.middleware.flex.pool.sdk.trigger.listener.ThreadPoolConfigAdjustListener;
 import org.apache.commons.lang.StringUtils;
 import org.redisson.Redisson;
+import org.redisson.api.RTopic;
 import org.redisson.api.RedissonClient;
 import org.redisson.codec.JsonJacksonCodec;
 import org.redisson.config.Config;
@@ -77,9 +81,22 @@ public class FlexThreadPoolAutoConfig {
 
         return new FlexThreadPoolServiceImpl(applicationName, threadPoolExecutorMap);
     }
+
     @Bean
     public ThreadPoolDataReportJob threadPoolDataReportJob(FlexThreadPoolService flexThreadPoolService, RegistryStrategy registryStrategy) {
         return new ThreadPoolDataReportJob(flexThreadPoolService, registryStrategy);
+    }
+
+    @Bean
+    public ThreadPoolConfigAdjustListener threadPoolConfigAdjustListener(FlexThreadPoolService flexThreadPoolService, RegistryStrategy registry) {
+        return new ThreadPoolConfigAdjustListener(flexThreadPoolService, registry);
+    }
+
+    @Bean("flexThreadPoolRedisTopic")
+    public RTopic flexThreadPoolRedisTopic(RedissonClient redissonClient, ThreadPoolConfigAdjustListener threadPoolConfigAdjustListener) {
+        RTopic topic = redissonClient.getTopic(RegistryEnum.FLEX_THREAD_POOL_REDIS_TOPIC.getKey() + "_" + applicationName);
+        topic.addListener(ThreadPoolConfigEntity.class, threadPoolConfigAdjustListener);
+        return topic;
     }
 
 }
